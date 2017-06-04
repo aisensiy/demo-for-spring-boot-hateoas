@@ -2,6 +2,8 @@ package com.example.demo.api;
 
 import com.example.demo.domain.Greeting;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,14 +26,10 @@ public class GreetingApi {
     }
 }
 
-class GreetingResource extends ResourceSupport {
+class GreetingResource extends Resource<Greeting> {
     private Greeting greeting;
 
-    public GreetingResource(Greeting greeting) {
-        this.greeting = greeting;
-    }
-
-    public String getContent() {
-        return greeting.getContent();
+    public GreetingResource(Greeting content) {
+        super(content);
     }
 }
