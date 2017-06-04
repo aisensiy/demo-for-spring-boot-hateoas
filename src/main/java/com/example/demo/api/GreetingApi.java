@@ -19,9 +19,12 @@ public class GreetingApi {
     private static final String TEMPLATE = "Hello, %s";
 
     @GetMapping
-    public GreetingResource getGreeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        GreetingResource resource = new GreetingResource(new Greeting(String.format(TEMPLATE, name)));
-        resource.add(linkTo(methodOn(GreetingApi.class).getGreeting(name)).withSelfRel());
+    public GreetingResource getGreeting(
+        @RequestParam(value = "name", defaultValue = "World") String name) {
+        GreetingResource resource = new GreetingResource(
+            new Greeting(String.format(TEMPLATE, name)));
+        resource.add(
+            linkTo(methodOn(GreetingApi.class).getGreeting(name)).withSelfRel());
         return resource;
     }
 }

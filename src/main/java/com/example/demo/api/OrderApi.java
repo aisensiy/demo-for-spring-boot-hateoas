@@ -38,7 +38,12 @@ public class OrderApi {
 
     @GetMapping
     public ResponseEntity<?> all() {
-        Resources<OrderResource> resources = new Resources<>(orderRepository.all().stream().map(OrderResource::new).collect(Collectors.toList()));
+        Resources<OrderResource> resources = new Resources<>(
+            orderRepository
+                .all()
+                .stream()
+                .map(OrderResource::new)
+                .collect(Collectors.toList()));
         resources.add(linkTo(methodOn(OrderApi.class).all()).withSelfRel());
         return ResponseEntity.ok(resources);
     }

@@ -10,10 +10,14 @@ public class OrderResource extends Resource<Order> {
     public OrderResource(Order order) {
         super(order);
 
-        this.add(linkTo(methodOn(OrderApi.class).orderResource(order.getId())).withSelfRel());
+        this.add(
+            linkTo(methodOn(OrderApi.class).orderResource(order.getId()))
+                .withSelfRel());
 
         if (!order.paid()) {
-            this.add(linkTo(methodOn(OrderApi.class).pay(order.getId())).withRel("payment"));
+            this.add(
+                linkTo(methodOn(OrderApi.class).pay(order.getId()))
+                    .withRel("payment"));
         }
     }
 }
